@@ -1,15 +1,16 @@
 pipeline {
     agent any
-    stages {
+    tools {
         stage('Build') {
             steps {
-                echo 'Build Step'
-                sleep 10
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn package'
             }
         }
         stage('Test') {
             steps {
-                echo 'Test step'
+                sh 'mvn test'
             }
         }
         stage('Deploy') {
